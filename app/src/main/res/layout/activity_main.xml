@@ -9,6 +9,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovies"
+        android:background="#e0b0ff"
         android:layout_width="358dp"
         android:layout_height="639dp"
         android:layout_alignParentStart="true"
