@@ -9,20 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-//import com.bumptech.glide.Glide;
 import com.example.flixster.GlideApp;
 import com.example.flixster.MovieDetailsActivity;
 import com.example.flixster.R;
 import com.example.flixster.models.Movie;
-
 import org.parceler.Parcels;
-
 import java.util.List;
-
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
@@ -76,6 +70,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             tvOverview.setText(movie.getOverview());
             int radius = 50;
             int margin = 10;
+
+            //Use GlideApp to put orientation-based placehoholder images instead of the movie images while loading
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 GlideApp.with(context)
                         .load(movie.getBackdropPath())
@@ -92,7 +88,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                         .into(ivPoster);
             }
 
-            //Glide.with(context).load(movie.getPosterPath()).into(ivPoster);
+            //To load image without placeholder: Glide.with(context).load(movie.getPosterPath()).into(ivPoster)
         }
 
         @Override

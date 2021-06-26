@@ -1,27 +1,21 @@
 package com.example.flixster;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixster.models.Movie;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcels;
-
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import okhttp3.Headers;
 
 
@@ -52,11 +46,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
         backdrop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Use async HTTP client to extract JSON array information from the database of movie videos
                 AsyncHttpClient client = new AsyncHttpClient();
-
                 final String VIDEOS_URL = "https://api.themoviedb.org/3/movie/" + movie.getId() + "/videos?api_key="+ getResources().getString(R.string.moviedb_api_key) +"&language=en-US";
-
-
                 client.get(VIDEOS_URL, new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int i, Headers headers, JSON json) {
@@ -67,6 +60,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
                             JSONObject firstVideo = results.getJSONObject(0);
                             final String videoId = firstVideo.getString("key");
                             Log.i(TAG, "videoId: " + videoId);
+
+                            //Play video as movie trailer if a video id was found
                             Intent intent = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
                             intent.putExtra("key", videoId);
                             startActivity(intent);
