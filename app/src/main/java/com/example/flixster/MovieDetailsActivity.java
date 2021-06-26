@@ -18,7 +18,6 @@ import org.json.JSONObject;
 import org.parceler.Parcels;
 import okhttp3.Headers;
 
-
 public class MovieDetailsActivity extends AppCompatActivity {
     public static final String TAG = "MovieDetailsActivity";
     Movie movie;
